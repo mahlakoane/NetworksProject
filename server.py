@@ -19,5 +19,8 @@ clientMsg= myclient.recv(1024)   #Buffer size.
 
 print(clientMsg.decode("utf-8"))
 
+#echo-send the received message back
+myclient.sendall(clientMsg)
+
 
 sock.close()
