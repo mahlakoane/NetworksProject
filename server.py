@@ -11,16 +11,27 @@ sock.listen(2)
 
 print('Waiting for client connection...')
 
-
 #Accept client connection here
+
 myclient, clientAddress = sock.accept()
-clientMsg= myclient.recv(1024)   #Buffer size.
+print('connection established!')
 
 
-print(clientMsg.decode("utf-8"))
 
-#echo-send the received message back
-myclient.sendall(clientMsg)
 
+while True:
+
+ clientMsg = myclient.recv(1024)   #Buffer size.
+ decodedMsg = clientMsg.decode("utf-8")
+ decodedMsgUpper = decodedMsg.upper() 
+       
+ if decodedMsgUpper=="EXIT":
+
+        myclient.sendall(decodedMsgUpper.encode("utf-8"))
+        break
+
+ else:
+        print(decodedMsg)
+ continue       
 
 sock.close()
