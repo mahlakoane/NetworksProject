@@ -18,6 +18,12 @@ converter=info.encode("utf-8")
 
 sock.send(converter)   #access the server through this interface
 
+# Receive the echoed message from server
+
+serverResponse=sock.recv(1024) # I can receive through this interface.
+
+print('The server echoed the message: '+ serverResponse.decode("utf-8"))
+
 sock.close()
 
 
