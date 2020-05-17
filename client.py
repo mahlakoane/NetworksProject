@@ -9,20 +9,28 @@ sock.connect((host, port))
 
 
 
+while True:
 
-info = input("Enter message you wish to send to server : ")
+   info = input("Enter message you wish to send to server : ")
 
-#stream vs byte-stream in python 3
+   #stream vs byte-stream in python 3
 
-converter=info.encode("utf-8")
+   converter=info.encode("utf-8")
 
-sock.send(converter)   #access the server through this interface
+   sock.send(converter)   #access the server through this interface
 
-# Receive the echoed message from server
+   # Receive the echoed message from server
 
-serverResponse=sock.recv(1024) # I can receive through this interface.
 
-print('The server echoed the message: '+ serverResponse.decode("utf-8"))
+   #serverResponse=sock.recv(1024) # I can receive through this interface.
+   #serverResponseDecoded=serverResponse.decode("utf-8")
+   
+   #if serverResponseDecoded=="EXIT":
+   #	    break
+   #else:
+
+   #     print('The server echoed the message: '+ serverResponse.decode("utf-8"))
+   #continue   
 
 sock.close()
 
