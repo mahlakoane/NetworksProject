@@ -1,36 +1,25 @@
 import socket
 
-sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM) #IPV4 and TCP
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 host = socket.gethostname()
-port = 9999
-
-#Request connection with server at this port. 
-sock.connect((host, port))
+port = 9999 
 
 
 
 while True:
 
-   info = input("Enter message you wish to send to server : ")
+ info = input("Enter message you wish to send to server : ")
 
-   #stream vs byte-stream in python 3
+ #stream vs byte-stream in python 3
 
-   converter=info.encode("utf-8")
+ converter=info.encode("utf-8")
 
-   sock.send(converter)   #access the server through this interface
-
-   # Receive the echoed message from server
-
-
-   #serverResponse=sock.recv(1024) # I can receive through this interface.
-   #serverResponseDecoded=serverResponse.decode("utf-8")
-   
-   #if serverResponseDecoded=="EXIT":
-   #	    break
-   #else:
-
-   #     print('The server echoed the message: '+ serverResponse.decode("utf-8"))
-   #continue   
+ sock.sendto(converter,(host,port))   #access the server through this interface
+ 
+ #if ever this is the case, terminate.
+ if info=="EXIT":   
+     break
+  
 
 sock.close()
 
